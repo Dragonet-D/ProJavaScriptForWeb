@@ -15,3 +15,9 @@ console.log(NaN === NaN);
 console.log(Number(undefined)); // NAN
 console.log(Number('0001'));
 console.log(Number('hello world'));
+
+let num1 = parseInt('123blue');
+console.log(num1);
+console.log(parseInt("0XA"));
+
+// 操作符
