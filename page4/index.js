@@ -46,3 +46,7 @@
 // Boolean 类型
 let booleanObj = new Boolean(true)
 console.log(booleanObj);
+console.log(typeof booleanObj);
+let bool = true;
+console.log(bool);
+console.log(typeof bool);
