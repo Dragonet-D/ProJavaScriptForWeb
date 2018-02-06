@@ -47,6 +47,98 @@
 let booleanObj = new Boolean(true)
 console.log(booleanObj);
 console.log(typeof booleanObj);
+console.log(booleanObj instanceof Boolean);
 let bool = true;
 console.log(bool);
 console.log(typeof bool);
+console.log(bool instanceof Boolean);
+
+// Number 类型
+let numberObj = new Number(10);
+console.log(numberObj.toString());
+// 二进制
+console.log(numberObj.toString(2));
+console.log(numberObj.toString(8));
+
+console.log(numberObj.toFixed(2));
+
+console.log(numberObj.toExponential(1));
+
+// String
+let stringObj = new String('hello world');
+console.log(stringObj.length);
+
+stringObj.charAt(1); // 'e'
+stringObj.charCodeAt(1); // '101
+stringObj.concat('nihao');
+
+stringObj.slice(3);
+stringObj.substring(3);
+stringObj.substr(3);
+
+stringObj.slice(3, 7);
+stringObj.substring(3,7);
+stringObj.substr(3,7);
+
+stringObj.indexOf('o');
+stringObj.lastIndexOf('o');
+
+stringObj.indexOf('o', 1);
+stringObj.lastIndexOf('o', 2);
+
+let positions = [];
+let pos = stringObj.indexOf('o');
+while(pos > -1) {
+  positions.push(pos);
+  pos = stringObj.indexOf('o', pos+1);
+}
+console.log(positions);
+
+// trim()
+let stringTrim = '  hello world  ';
+stringTrim.trim();
+stringTrim.toLowerCase();
+stringTrim.toLocaleLowerCase();
+
+// 字符串的模式匹配方法
+
+let text = 'cat, bat, sat, fat';
+let pattern = /.at/g;
+let matches = text.match(pattern);
+console.log(matches.index);
+console.log(matches[0]);
+console.log(pattern.lastIndex);
+
+/**
+ * match() 方法返回了一个数组；如果是调用RegExp对象的exec()方法并传递本例中的字符串作为参数，那么也会得到与此相同的数组：数组的第一项是与整个模式匹配的字符串，之后的每一项（如果有）保存着与正则表达式中的捕获组匹配的字符串。
+ */
+
+let regText = 'cat, bat, sat, fat';
+let regResult = regText.replace('at', 'ond');
+
+regResult = regText.replace(/at/g, 'ond');
+console.log(regResult);
+
+result = regText.replace(/(.at)/g, "word($1)");
+console.log(result);
+
+// replace 
+/**
+ * replace第二个参数可以是一个函数。在只有一个匹配项（即与模式匹配的字符串）的情况下，会向这个函数传递三个参数：模式的匹配项、模式匹配项在字符串中的位置和原始字符串。在正则表达式中定义了多个捕获组的匹配项，但最后两个参数仍然分别是模式的匹配项在字符串中的位置和原始字符串。这个函数应该返回一个字符串，表示应该被替换的匹配项使用函数作为replace()方法的第二个参数可以实现更加精细的替换操作；
+ */
+function htmlEscape(text) {
+  return text.replace(/[<>"&]/g, function(match, pos, originalText) {
+    switch(match) {
+      case "<":
+        return "&lt;";
+      case ">":
+        return "&gt;";
+      case "&":
+        return "&amp;";
+      case "\"":
+        return "&quot;";
+    }
+  });
+}
+console.log(htmlEscape('<p class=\'greeting\'>hello world</p>'));
+
