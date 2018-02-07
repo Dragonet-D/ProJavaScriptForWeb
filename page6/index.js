@@ -116,3 +116,37 @@ console.log(gperson1 instanceof GPerson);
  let yperson1 = new YPerson();
  yperson1.sayName();
  
+ function DPerson() {
+ }
+ DPerson.prototype.name = 'ni';
+ DPerson.prototype.age = 29;
+ DPerson.prototype.job = 'Soft Enginner';
+ DPerson.prototype.sayName = function () {
+   console.log(this.name);
+ };
+
+ let dperson1 = new DPerson();
+ let dperson2 = new DPerson();
+
+ dperson1.name = 'Grey';
+ console.log(dperson1.name);
+ console.log(dperson2.name);
+
+delete person1.name;
+console.log(person1.name);
+
+// in
+console.log(dperson2.hasOwnProperty('name')); // false
+console.log('name' in dperson2); // true
+/**
+ * name 属性要么是直接在对象上访问到的,要么是通过原型访问到的.因此,调用'name' in dperson2 始终返回true,无论该属性存在于实例中还是存在于原型中.同时使用hasOwnProperty()方法和in操作符,就可以确定该属性到底是存在于对象中,还是原型中.
+ */
+function hasPrototypeProperty(obj, name) {
+  return !obj.hasOwnProperty(name) && (name in object);
+}
+/**
+ * 由于in 操作符只要通过对象能够访问到属性就会返回true,hasOwnProperty()只在属性存在于实例中才会返回true,因此只要in操作符返回true而hasOwnProperty()返回fasle,就可以确定属性是原型中的属性.
+ */
+
+ // hasPrototypeProperty
+ console.log(hasPrototypeProperty(dperson2, 'name'));
