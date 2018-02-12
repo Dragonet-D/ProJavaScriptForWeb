@@ -41,6 +41,16 @@ function factorial(num) {
       console.log(234);
       break;
     default:
-      break;
+      return num * factorial(num - 1);
   }
 }
+function digui(num) {
+  if (num <= 1) {
+    return 1;
+  } else {
+    return num * digui(num - 1);
+  }
+}
+let anotherDigui = digui;
+digui = null;
+console.log(anotherDigui(4)); // 出错
