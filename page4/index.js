@@ -141,4 +141,9 @@ function htmlEscape(text) {
   });
 }
 console.log(htmlEscape('<p class=\'greeting\'>hello world</p>'));
-
+let date = new Date();
+date.toDateString();// 以特定实现的格式显示星期几,月,日和年;
+date.toTimeString();// 以特定实现的格式显示时,分,秒和时区;
+date.toLocaleDateString(); 
+date.toLocaleTimeString();
+date.toUTCString();

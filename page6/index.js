@@ -150,3 +150,65 @@ function hasPrototypeProperty(obj, name) {
 
  // hasPrototypeProperty
  console.log(hasPrototypeProperty(dperson2, 'name'));
+
+ let oo = {
+   toString() {
+     return 'My Object'
+   }
+ }
+
+ for (let prop in oo) {
+  if (prop === 'toString') {
+    console.log('Fund toStirng');
+  }
+ }
+/**
+ * 以上代码运行时,应该会显示一个警告框,表明找到了toString() 方法.这里的对象oo定义了一个名为toString()的方法,该方法屏蔽了原型中(不可枚举)的toString()方法.
+ */
+
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  init() {
+    console.log(this.name);
+  }
+}
+let cperson = new Person('join');
+console.log(cperson.name);
+
+function FPerson(name, age, job) {
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.friends = ['Shelby', 'Court'];
+}
+FPerson.prototype = {
+  constructor: FPerson,
+  sayName() {
+    console.log(this.name);
+  }
+}
+
+function OPerson(name, age, job) {
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  if (typeof this.sayName !== 'function') {
+    OPerson.prototype.sayName = function() {
+      console.log(this.name);
+    }
+  }
+}
+let ofriend = new OPerson('nic', 29, 'soft');
+ofriend.sayName();
+
+// 原型式继承
+function EPerson(o) {
+  function F() {};
+  F.prototype = o;
+  return new F();
+}
+/**
+ * 在EPerson()函数内部
+ */
