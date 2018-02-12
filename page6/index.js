@@ -210,5 +210,31 @@ function EPerson(o) {
   return new F();
 }
 /**
- * 在EPerson()函数内部
+ * 在EPerson()函数内部先创建了一个临时的构造函数,然后将传入的对象作为这个构造函数的原型,最后返回了这个临时类型的一个新实例.从本质上讲,在EPerson()对传入其中的对象执行了一次浅复制.
  */
+let person3 = {
+  name: 'leo',
+  friends: ['a','b','c']
+}
+
+let anotherPerson = object(person3);
+anotherPerson.name = 'rob';
+anotherPerson.friends.push('rob');
+
+// 寄生组合式继承
+function SuperType(name) {
+  this.name = name;
+  this.colors = ['red', 'green'];
+}
+SuperType.prototype.sayName = function() {
+  console.log(this.name);
+}
+function SubType(name, age) {
+  SuperType.call(this, name);
+  this.age = age;
+}
+SubType.prototype = new SuperType();
+SubType.prototype.constructor = SubType;
+SubType.prototype.sayAge = function() {
+  console.log(this.name);
+}
